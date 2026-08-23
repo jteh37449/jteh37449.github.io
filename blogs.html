@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blogs - Jasper Tan</title>
+<meta name="description" content="Writing by Jasper Tan.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="site-title" href="index.html">Jasper Tan | Homepage</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="education.html">Education</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blogs.html" class="is-active">Blogs</a></li>
+      <li><a href="codes.html">Codes</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="author__avatar">
+      <img src="images/profile.jpg" alt="Jasper Tan">
+    </div>
+    <div class="author__name">Jasper Tan</div>
+    <p class="author__bio">Student at Xi'an Jiaotong University</p>
+    <p class="author__location">Xi'an, China</p>
+    <ul class="author__urls">
+      <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj">Email</a></li>
+      <li><a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces</a></li>
+      <li><a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle</a></li>
+      <li><a href="https://www.linkedin.com/in/jasper-tan-xian/" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </aside>
+
+  <main class="page">
+    <h1 class="page__title">Blogs</h1>
+    <p>Notes and write-ups on things I have been working on or reading about.</p>
+
+    <ul class="post-list">
+      <li>
+        <a class="post-title" href="posts/first-post.html">Title of your first post</a>
+        <span class="post-date">August 2026</span>
+        <p>
+          A one- or two-sentence summary that tells the reader whether the post is for them.
+          Create the post itself as an HTML file under <code>posts/</code>.
+        </p>
+      </li>
+
+      <li>
+        <a class="post-title" href="#">Title of your second post</a>
+        <span class="post-date">June 2026</span>
+        <p>Summary of the second post.</p>
+      </li>
+
+      <li>
+        <a class="post-title" href="#">Title of your third post</a>
+        <span class="post-date">March 2026</span>
+        <p>Summary of the third post.</p>
+      </li>
+    </ul>
+  </main>
+
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    &copy; <span id="year"></span> Jasper Tan.
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
