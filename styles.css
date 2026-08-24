@@ -207,6 +207,12 @@ code {
   color: var(--text-strong);
   text-decoration: none;
   white-space: nowrap;
+  /* Let the title shrink rather than push the nav off-screen. Without
+     min-width:0 a flex item refuses to go below its content width, which
+     forced ~16px of horizontal scroll at 360px — a very common phone width. */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .site-title:hover { color: var(--text-strong); text-decoration: none; }
 
@@ -782,6 +788,13 @@ button.cert-open:hover .award-name::after { opacity: 1; }
 
   .award-list li,
   .award-list button.cert-open { flex-direction: column; gap: 2px; }
+
+  /* Narrow phones: buy back room in the masthead so the title keeps
+     as many characters as possible before the ellipsis kicks in. */
+  .masthead__inner { padding: 0 14px; gap: 10px; }
+  .masthead__nav { gap: 10px; }
+  .site-title { font-size: 17px; }
+  .nav-toggle { padding: 8px 2px; }
 
   .lightbox { padding: 20px 12px; }
   .lightbox__close { top: -30px; }
