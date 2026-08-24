@@ -513,6 +513,17 @@ button.cert-open:hover .award-name::after { opacity: 1; }
 
 .card__links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; font-weight: 600; }
 
+/* Certificate opener sitting among the card links — matches them visually. */
+.card__links button.cert-open {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--link);
+  cursor: pointer;
+}
+.card__links button.cert-open:hover { color: var(--link-hover); text-decoration: underline; }
+
 /* Skills */
 .skill-group { margin-bottom: 14px; }
 .skill-group strong { color: var(--text-strong); }
