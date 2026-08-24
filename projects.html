@@ -7,28 +7,32 @@
 <meta name="description" content="Projects and work experience of Jasper Tan — Customer Service Digital Employee, chess engine optimisation, and a real-time MERN chat application.">
 <script>
   (function () {
-    var t;
-    try { t = localStorage.getItem('theme'); } catch (e) {}
-    if (!t) {
-      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
+    var t, l;
+    try { t = localStorage.getItem('theme'); l = localStorage.getItem('locale'); } catch (e) {}
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    if (!l) l = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
     document.documentElement.setAttribute('data-theme', t);
+    document.documentElement.setAttribute('data-locale', l);
+    document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
   })();
 </script>
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-zh-title="项目 - 陈佃铭">
 
 <header class="masthead">
   <div class="masthead__inner">
-    <a class="site-title" href="index.html">Jasper Tan | Homepage</a>
+    <a class="site-title" href="index.html" data-zh="陈佃铭 | 主页">Jasper Tan | Homepage</a>
     <nav class="masthead__nav">
       <ul class="nav-links" id="navLinks">
-        <li><a href="education.html">Education</a></li>
-        <li><a href="projects.html" class="is-active">Projects</a></li>
-        <li><a href="activity.html">Activity</a></li>
-        <li><a href="codes.html">Codes</a></li>
+        <li><a href="education.html" data-zh="教育背景">Education</a></li>
+        <li><a href="projects.html" class="is-active" data-zh="项目">Projects</a></li>
+        <li><a href="activity.html" data-zh="活动">Activity</a></li>
+        <li><a href="codes.html" data-zh="代码">Codes</a></li>
       </ul>
+      <button class="locale-toggle" id="localeToggle" aria-label="Switch language / 切换语言" title="中文 / English">
+        <span class="locale-to-zh">中</span><span class="locale-to-en">EN</span>
+      </button>
       <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme" title="Switch theme">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -46,43 +50,44 @@
     <div class="author__avatar">
       <img src="images/profile.jpg" alt="Jasper Tan">
     </div>
-    <div class="author__name">Jasper Tan</div>
-    <p class="author__bio">Computer Science student at Xi'an Jiaotong University</p>
-    <p class="author__location">Xi'an, Shaanxi, China</p>
+    <div class="author__name" data-zh="陈佃铭 Jasper Tan">Jasper Tan</div>
+    <p class="author__bio" data-zh="西安交通大学 计算机科学与技术">Computer Science student at Xi'an Jiaotong University</p>
+    <p class="author__location" data-zh="中国 陕西省 西安市">Xi'an, Shaanxi, China</p>
     <ul class="author__urls">
-      <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj">Email</a></li>
-      <li><a href="files/Jasper_Tan_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></li>
+      <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj" data-zh="邮箱">Email</a></li>
+      <li><a href="files/Jasper_Tan_CV.pdf" target="_blank" rel="noopener"
+             data-zh="简历 (PDF)" data-zh-href="files/Jasper_Tan_CV_zh.pdf">CV (PDF)</a></li>
       <li><a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces</a></li>
       <li><a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle</a></li>
-      <li><a href="https://www.linkedin.com/in/jasper-tan-xian/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://www.linkedin.com/in/jasper-tan-xian/" target="_blank" rel="noopener" data-zh="领英">LinkedIn</a></li>
     </ul>
   </aside>
 
   <main class="page">
-    <h1 class="page__title">Projects</h1>
+    <h1 class="page__title" data-zh="项目">Projects</h1>
 
     <div class="card">
       <div class="card__head">
-        <h3 class="card__title">Customer Service Digital Employee &mdash; GDP Labs</h3>
-        <span class="card__when">Jul 2026 &ndash; Sep 2026</span>
+        <h3 class="card__title" data-zh="客户服务数字员工（CS-DE）—— GDP Labs">Customer Service Digital Employee &mdash; GDP Labs</h3>
+        <span class="card__when" data-zh="2026 年 7 月 – 2026 年 9 月">Jul 2026 &ndash; Sep 2026</span>
       </div>
       <div class="tags">
-        <span class="tag">Internship</span><span class="tag">Agentic AI</span><span class="tag">Integrations</span><span class="tag">LLM Optimisation</span>
+        <span class="tag" data-zh="实习">Internship</span><span class="tag" data-zh="智能体">Agentic AI</span><span class="tag" data-zh="系统集成">Integrations</span><span class="tag" data-zh="模型优化">LLM Optimisation</span>
       </div>
-      <p>
+      <p data-zh="软件开发实习，参与客户服务数字员工（CS-DE）的功能开发 —— 一个通过对话处理客服工作的智能体。我的工作包括：">
         Software developer internship building features for a Customer Service Digital Employee
         (CS-DE) &mdash; an agent that handles support work through conversation. My work covered:
       </p>
       <ul>
-        <li>Connecting the CS-DE to a third-party board to fetch board data for specified regions.</li>
-        <li>Creating and updating tickets on that board directly from a chat conversation.</li>
-        <li>Reading existing tickets and generating PDF and DOCX drafts of them from chat.</li>
-        <li>
+        <li data-zh="将 CS-DE 接入第三方看板，按指定区域获取看板数据。">Connecting the CS-DE to a third-party board to fetch board data for specified regions.</li>
+        <li data-zh="通过对话直接在看板上创建和更新工单。">Creating and updating tickets on that board directly from a chat conversation.</li>
+        <li data-zh="读取已有工单，并从对话中生成 PDF 与 DOCX 草稿。">Reading existing tickets and generating PDF and DOCX drafts of them from chat.</li>
+        <li data-zh-html="<strong>Token 优化</strong> —— 分析每次对话的 token 消耗，降低单次交互成本。">
           <strong>Token optimisation</strong> &mdash; profiling how many tokens each conversation
           consumed and cutting the cost per interaction.
         </li>
-        <li>
+        <li data-zh-html="<strong>模型迁移</strong> —— 评估可选的大语言模型，并在每个模型上重新验证核心对话流程，包括针对「智能体声称完成了实际未执行的工作」这类情况的对抗性测试。">
           <strong>Model migration</strong> &mdash; evaluating candidate language models for the
           agent and re-verifying the core conversational flows on each one, including adversarial
           testing for cases where an agent reports success on work it never actually performed.
@@ -92,41 +97,41 @@
 
     <div class="card">
       <div class="card__head">
-        <h3 class="card__title">Efficient Chess Engine &mdash; Kaggle &times; Google</h3>
-        <span class="card__when">Dec 2024 &ndash; Feb 2025</span>
+        <h3 class="card__title" data-zh="高效国际象棋引擎 —— Kaggle × Google">Efficient Chess Engine &mdash; Kaggle &times; Google</h3>
+        <span class="card__when" data-zh="2024 年 12 月 – 2025 年 2 月">Dec 2024 &ndash; Feb 2025</span>
       </div>
       <div class="tags">
-        <span class="tag">C++</span><span class="tag">Optimisation</span><span class="tag">Top 2%</span>
+        <span class="tag">C++</span><span class="tag" data-zh="性能优化">Optimisation</span><span class="tag" data-zh="前 2%">Top 2%</span>
       </div>
-      <p>
+      <p data-zh-html="FIDE &amp; Google 高效国际象棋 AI 挑战赛要求国际象棋引擎在极其苛刻的限制下运行：<strong>5&nbsp;MiB 内存、2.20&nbsp;GHz 单核 CPU、64&nbsp;KB 提交体积上限</strong>。我研究并测试了多个开源引擎，最终将其中一个优化到能够在该预算内运行，同时保持棋力。">
         The FIDE &amp; Google Efficient Chess AI Challenge asked for a chess engine running under
         severe constraints: <strong>5&nbsp;MiB of RAM, a single 2.20&nbsp;GHz core, and a 64&nbsp;KB
         submission size limit</strong>. I studied and benchmarked a range of open-source engines,
         then optimised one to fit inside that budget without losing playing strength.
       </p>
-      <p>
+      <p data-zh-html="最终在 <strong>1120 支队伍中排名第 18</strong> —— 排行榜前 2%，并获得 Kaggle 竞赛银牌。">
         Finished <strong>18th out of 1120 teams</strong> &mdash; the top 2% of the leaderboard,
         and a Kaggle competition silver medal.
       </p>
       <div class="card__links">
-        <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle profile</a>
+        <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener" data-zh="Kaggle 主页">Kaggle profile</a>
       </div>
     </div>
 
     <div class="card">
       <div class="card__head">
-        <h3 class="card__title">Chat-Space &mdash; Real-time MERN Chat App</h3>
-        <span class="card__when">May 2025 &ndash; Jun 2025</span>
+        <h3 class="card__title" data-zh="Chat-Space —— MERN 实时聊天应用">Chat-Space &mdash; Real-time MERN Chat App</h3>
+        <span class="card__when" data-zh="2025 年 5 月 – 2025 年 6 月">May 2025 &ndash; Jun 2025</span>
       </div>
       <div class="tags">
         <span class="tag">MongoDB</span><span class="tag">Express</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Socket.IO</span>
       </div>
-      <p>
+      <p data-zh="基于 MERN 技术栈构建的实时聊天应用，使用 Socket.IO 实现客户端与服务端的双向通信，消息无需轮询即可送达。">
         A real-time chat application built on the MERN stack, using Socket.IO for bi-directional
         communication between clients and server so messages arrive without polling.
       </p>
       <div class="card__links">
-        <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener">Source</a>
+        <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener" data-zh="源代码">Source</a>
       </div>
     </div>
   </main>
@@ -135,7 +140,7 @@
 
 <footer class="site-footer">
   <div class="site-footer__inner">
-    &copy; <span id="year"></span> Jasper Tan.
+    &copy; <span id="year"></span> <span data-zh="陈佃铭">Jasper Tan</span>.
   </div>
 </footer>
 

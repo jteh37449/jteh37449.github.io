@@ -6,30 +6,34 @@
 <title>About - Jasper Tan</title>
 <meta name="description" content="Jasper Tan — Computer Science student at Xi'an Jiaotong University. Competitive programmer (Codeforces Candidate Master) and full-stack developer.">
 <script>
-  // Set the theme before first paint so there is no flash of the wrong colours.
+  // Set theme and language before first paint so there is no flash.
   (function () {
-    var t;
-    try { t = localStorage.getItem('theme'); } catch (e) {}
-    if (!t) {
-      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
+    var t, l;
+    try { t = localStorage.getItem('theme'); l = localStorage.getItem('locale'); } catch (e) {}
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    if (!l) l = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
     document.documentElement.setAttribute('data-theme', t);
+    document.documentElement.setAttribute('data-locale', l);
+    document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
   })();
 </script>
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-zh-title="关于 - 陈佃铭">
 
 <header class="masthead">
   <div class="masthead__inner">
-    <a class="site-title" href="index.html">Jasper Tan | Homepage</a>
+    <a class="site-title" href="index.html" data-zh="陈佃铭 | 主页">Jasper Tan | Homepage</a>
     <nav class="masthead__nav">
       <ul class="nav-links" id="navLinks">
-        <li><a href="education.html">Education</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="activity.html">Activity</a></li>
-        <li><a href="codes.html">Codes</a></li>
+        <li><a href="education.html" data-zh="教育背景">Education</a></li>
+        <li><a href="projects.html" data-zh="项目">Projects</a></li>
+        <li><a href="activity.html" data-zh="活动">Activity</a></li>
+        <li><a href="codes.html" data-zh="代码">Codes</a></li>
       </ul>
+      <button class="locale-toggle" id="localeToggle" aria-label="Switch language / 切换语言" title="中文 / English">
+        <span class="locale-to-zh">中</span><span class="locale-to-en">EN</span>
+      </button>
       <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme" title="Switch theme">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -48,27 +52,28 @@
     <div class="author__avatar">
       <img src="images/profile.jpg" alt="Jasper Tan">
     </div>
-    <div class="author__name">Jasper Tan</div>
-    <p class="author__bio">Computer Science student at Xi'an Jiaotong University</p>
-    <p class="author__location">Xi'an, Shaanxi, China</p>
+    <div class="author__name" data-zh="陈佃铭 Jasper Tan">Jasper Tan</div>
+    <p class="author__bio" data-zh="西安交通大学 计算机科学与技术">Computer Science student at Xi'an Jiaotong University</p>
+    <p class="author__location" data-zh="中国 陕西省 西安市">Xi'an, Shaanxi, China</p>
     <ul class="author__urls">
-      <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj">Email</a></li>
-      <li><a href="files/Jasper_Tan_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></li>
+      <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj" data-zh="邮箱">Email</a></li>
+      <li><a href="files/Jasper_Tan_CV.pdf" target="_blank" rel="noopener"
+             data-zh="简历 (PDF)" data-zh-href="files/Jasper_Tan_CV_zh.pdf">CV (PDF)</a></li>
       <li><a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces</a></li>
       <li><a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle</a></li>
-      <li><a href="https://www.linkedin.com/in/jasper-tan-xian/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://www.linkedin.com/in/jasper-tan-xian/" target="_blank" rel="noopener" data-zh="领英">LinkedIn</a></li>
     </ul>
   </aside>
 
   <main class="page">
-    <p>
+    <p data-zh-html="我是<strong>西安交通大学</strong><strong>计算机科学与技术</strong>专业的本科生，2027 年毕业。我来自印度尼西亚，现居西安，日常主要使用 C++ 和 Python。">
       I am an undergraduate <strong>Computer Science</strong> student at
       <strong>Xi'an Jiaotong University</strong>, graduating in 2027. I am Indonesian and based
       in Xi'an, and I work mostly in C++ and Python.
     </p>
 
-    <p>
+    <p data-zh-html="我的大部分时间都投入在<strong>竞技编程</strong>上。目前是 <a href=&quot;https://codeforces.com/profile/Jteh&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Codeforces</a> Candidate Master（用户排名前 3%），并在百度之星决赛、码蹄杯国赛、ICPC 陕西省赛以及团体程序设计天梯赛全国总决赛中获奖。竞赛之外，我也开发全栈 Web 应用，并在 <a href=&quot;https://www.kaggle.com/tanjasper&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Kaggle</a> 上做机器学习题目。">
       Most of my time goes into <strong>competitive programming</strong>. I am a Candidate Master
       on <a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces</a>
       (top 3% of users), and I have medalled at the Baidu Star finals, the Matiji national
@@ -78,47 +83,47 @@
       <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle</a>.
     </p>
 
-    <p>
+    <p data-zh-html="我目前在 <strong>GDP Labs</strong> 担任软件开发实习生，负责客户服务数字员工（CS-DE）相关开发 —— 详见<a href=&quot;projects.html&quot;>项目</a>页面。">
       I am currently a software developer intern at <strong>GDP Labs</strong>, working on a
       Customer Service Digital Employee — see <a href="projects.html">Projects</a> for details.
     </p>
 
-    <h1>News</h1>
+    <h1 data-zh="近况">News</h1>
     <ul class="news-list">
       <li>
-        <span class="date">Jul 2026</span>
-        Started a software developer internship at GDP Labs, building features for a Customer
-        Service Digital Employee.
+        <span class="date" data-zh="2026 年 7 月">Jul 2026</span>
+        <span data-zh="入职 GDP Labs 软件开发实习，参与客户服务数字员工（CS-DE）的功能开发。">Started a software developer internship at GDP Labs, building features for a Customer
+        Service Digital Employee.</span>
       </li>
       <li>
-        <span class="date">Dec 2025</span>
-        Bronze medal at the Baidu Star Competitive Programming Competition finals.
+        <span class="date" data-zh="2025 年 12 月">Dec 2025</span>
+        <span data-zh="获百度之星程序设计竞赛决赛铜奖。">Bronze medal at the Baidu Star Competitive Programming Competition finals.</span>
       </li>
       <li>
-        <span class="date">Jul 2025</span>
-        Silver medal at the Matiji.net National Competitive Programming Competition.
+        <span class="date" data-zh="2025 年 8 月">Jul 2025</span>
+        <span data-zh="获码蹄杯程序设计竞赛国赛银奖。">Silver medal at the Matiji.net National Competitive Programming Competition.</span>
       </li>
       <li>
-        <span class="date">Jun 2025</span>
-        Released <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener">Chat-Space</a>,
-        a real-time MERN stack chat application.
+        <span class="date" data-zh="2025 年 6 月">Jun 2025</span>
+        <span data-zh-html="发布 <a href=&quot;https://github.com/jteh37449/Chat-Space&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Chat-Space</a>，一个基于 MERN 技术栈的实时聊天应用。">Released <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener">Chat-Space</a>,
+        a real-time MERN stack chat application.</span>
       </li>
       <li>
-        <span class="date">May 2025</span>
-        Second Prize at the 2025 ICPC Shaanxi Provincial Cup.
+        <span class="date" data-zh="2025 年 5 月">May 2025</span>
+        <span data-zh="获 2025 年 ICPC 陕西省赛银牌。">Second Prize at the 2025 ICPC Shaanxi Provincial Cup.</span>
       </li>
       <li>
-        <span class="date">Apr 2025</span>
-        Second Prize at the national finals of the Team Programming Ladder Competition.
+        <span class="date" data-zh="2025 年 5 月">Apr 2025</span>
+        <span data-zh="获团体程序设计天梯赛全国总决赛二等奖。">Second Prize at the national finals of the Team Programming Ladder Competition.</span>
       </li>
       <li>
-        <span class="date">Mar 2025</span>
-        Winner of Harvard University's CS50x 2025 Puzzle Day.
+        <span class="date" data-zh="2025 年 3 月">Mar 2025</span>
+        <span data-zh="哈佛大学 CS50x 2025 Puzzle Day 获胜。">Winner of Harvard University's CS50x 2025 Puzzle Day.</span>
       </li>
       <li>
-        <span class="date">Feb 2025</span>
-        Silver medal in the Kaggle FIDE &amp; Google Efficient Chess AI Challenge &mdash; 18th of
-        1120 teams (top 2%).
+        <span class="date" data-zh="2025 年 3 月">Feb 2025</span>
+        <span data-zh="获 Kaggle FIDE &amp; Google 高效国际象棋 AI 挑战赛银牌 —— 1120 支队伍中第 18 名（前 2%）。">Silver medal in the Kaggle FIDE &amp; Google Efficient Chess AI Challenge — 18th of
+        1120 teams (top 2%).</span>
       </li>
     </ul>
   </main>
@@ -127,7 +132,7 @@
 
 <footer class="site-footer">
   <div class="site-footer__inner">
-    &copy; <span id="year"></span> Jasper Tan.
+    &copy; <span id="year"></span> <span data-zh="陈佃铭">Jasper Tan</span>.
   </div>
 </footer>
 

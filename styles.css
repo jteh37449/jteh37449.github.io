@@ -24,6 +24,9 @@
   --max-width: 1280px;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           "Helvetica Neue", Arial, sans-serif;
+  --font-cjk: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+              "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+              "Source Han Sans SC", sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
@@ -161,6 +164,36 @@ code {
 :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 :root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
 :root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+
+/* Language toggle — same shape as the theme button */
+.locale-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 7px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.locale-toggle:hover { color: var(--text-strong); border-color: var(--muted); }
+
+/* Show the language you would switch TO. */
+:root[data-locale="zh"] .locale-toggle .locale-to-zh { display: none; }
+:root:not([data-locale="zh"]) .locale-toggle .locale-to-en { display: none; }
+
+/* Chinese text sits better with a slightly looser line and a CJK-aware stack. */
+:root[data-locale="zh"] body {
+  font-family: var(--font-cjk);
+  line-height: 1.7;
+}
 
 .nav-toggle {
   display: none;

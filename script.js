@@ -15,6 +15,62 @@ if (themeToggle) {
   });
 }
 
+// ---------------------------------------------------------------
+// Language toggle (EN / 中)
+//
+// Translatable elements carry one of:
+//   data-zh       — swap textContent
+//   data-zh-html  — swap innerHTML (for text containing links or <strong>)
+//   data-zh-href  — swap an href (used for the two CV files)
+// The English original is captured on first run, so it only lives in
+// the markup once. data-zh-html elements must not contain data-zh
+// elements: replacing innerHTML would discard their captured original.
+// ---------------------------------------------------------------
+function currentLocale() {
+  return document.documentElement.getAttribute('data-locale') === 'zh' ? 'zh' : 'en';
+}
+
+function applyLocale(loc) {
+  document.querySelectorAll('[data-zh]').forEach((el) => {
+    if (el.dataset.en === undefined) el.dataset.en = el.textContent;
+    el.textContent = loc === 'zh' ? el.dataset.zh : el.dataset.en;
+  });
+
+  document.querySelectorAll('[data-zh-html]').forEach((el) => {
+    if (el.dataset.enHtml === undefined) el.dataset.enHtml = el.innerHTML;
+    el.innerHTML = loc === 'zh' ? el.dataset.zhHtml : el.dataset.enHtml;
+  });
+
+  document.querySelectorAll('[data-zh-href]').forEach((el) => {
+    if (el.dataset.enHref === undefined) el.dataset.enHref = el.getAttribute('href');
+    el.setAttribute('href', loc === 'zh' ? el.dataset.zhHref : el.dataset.enHref);
+  });
+
+  const t = document.body.dataset;
+  if (t.zhTitle) {
+    if (t.enTitle === undefined) t.enTitle = document.title;
+    document.title = loc === 'zh' ? t.zhTitle : t.enTitle;
+  }
+
+  document.documentElement.setAttribute('data-locale', loc);
+  document.documentElement.lang = loc === 'zh' ? 'zh-CN' : 'en';
+}
+
+applyLocale(currentLocale());
+
+const localeToggle = document.getElementById('localeToggle');
+if (localeToggle) {
+  localeToggle.addEventListener('click', () => {
+    const next = currentLocale() === 'zh' ? 'en' : 'zh';
+    applyLocale(next);
+    try {
+      localStorage.setItem('locale', next);
+    } catch (e) {
+      /* private mode — the choice just will not persist */
+    }
+  });
+}
+
 // Footer year
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -37,9 +93,12 @@ if (lightbox) {
 
   const open = (btn) => {
     lastFocused = btn;
+    const title = (currentLocale() === 'zh' && btn.dataset.certTitleZh)
+      ? btn.dataset.certTitleZh
+      : btn.dataset.certTitle;
     img.src = btn.dataset.cert;
-    img.alt = btn.dataset.certTitle + ' — certificate';
-    caption.textContent = btn.dataset.certTitle;
+    img.alt = title;
+    caption.textContent = title;
     lightbox.classList.add('is-open');
     document.body.style.overflow = 'hidden';
     lightbox.querySelector('.lightbox__close').focus();

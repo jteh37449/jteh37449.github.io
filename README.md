@@ -19,7 +19,8 @@ a top navigation bar, a left sidebar with photo and links, and a right content c
 | `script.js` | Theme toggle, certificate lightbox, mobile nav, email assembly, footer year |
 | `images/profile.jpg` | Avatar, cropped square from the original photo |
 | `images/certificates/` | Award certificates shown in the lightbox |
-| `files/Jasper_Tan_CV.pdf` | CV with the phone number redacted |
+| `files/Jasper_Tan_CV.pdf` | English CV, phone number redacted |
+| `files/Jasper_Tan_CV_zh.pdf` | Chinese CV, phone number redacted |
 
 ## Themes
 
@@ -39,11 +40,37 @@ Change a colour in all three places or the themes drift apart. Both palettes cle
 WCAG AA contrast; the muted grey is `#6a7278` rather than the theme's original
 `#7a8288`, which was only 3.9:1 on white.
 
+## Languages (EN / 中)
+
+One set of pages carries both languages. English lives in the markup as normal; Chinese
+lives in data attributes beside it:
+
+| Attribute | Swaps | Use for |
+|---|---|---|
+| `data-zh` | `textContent` | plain text |
+| `data-zh-html` | `innerHTML` | text containing links or `<strong>` |
+| `data-zh-href` | the `href` | the two CV files |
+| `data-zh-title` (on `<body>`) | `document.title` | page title |
+| `data-cert-title-zh` | lightbox caption | certificate captions |
+
+`applyLocale()` in `script.js` captures the English original on first run, so English is
+never duplicated. **A `data-zh-html` element must not contain `data-zh` children** —
+replacing `innerHTML` destroys them along with their captured original.
+
+The initial language comes from `localStorage.locale`, falling back to the browser's
+`navigator.language`. The `<head>` script sets `data-locale` before paint (same trick as the
+theme), but the *text* swap runs from `script.js` at the end of `<body>`, so a Chinese
+visitor may catch a brief flash of English on a slow connection. Living with that is the
+trade for not maintaining a second set of pages.
+
+Proper nouns stay in English on purpose: brand names (GitHub, Codeforces, Kaggle), official
+round names ("Codeforces Round 1089 (Div. 2)"), repo names, and language/framework names.
+
 ## Editing
 
 **The masthead and sidebar are duplicated in all five HTML files** (no build step, no
 includes). Editing your bio, links, or nav means editing five files, or the pages will
-disagree with each other.
+disagree with each other. Remember to update the `data-zh` alongside the English.
 
 To swap the photo: the CSS crops to a circle, so use a square source or the centre crop
 will cut your face off.
