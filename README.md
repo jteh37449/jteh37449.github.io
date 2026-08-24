@@ -12,11 +12,14 @@ a top navigation bar, a left sidebar with photo and links, and a right content c
 | `index.html` | Homepage — intro and News |
 | `education.html` | Degree, awards, skills, activities |
 | `projects.html` | GDP Labs internship, chess engine, Chat-Space |
-| `blogs.html` | Post index (currently empty — see below) |
+| `activity.html` | Contest problem testing and volunteering |
 | `codes.html` | Repositories and competitive programming profiles |
+| `blogs.html` | Redirect stub → `activity.html` (the page was briefly live under the old name) |
 | `styles.css` | All styling, including both colour themes |
-| `script.js` | Theme toggle, mobile nav, email assembly, footer year |
+| `script.js` | Theme toggle, certificate lightbox, mobile nav, email assembly, footer year |
 | `images/profile.jpg` | Avatar, cropped square from the original photo |
+| `images/certificates/` | Award certificates shown in the lightbox |
+| `files/Jasper_Tan_CV.pdf` | CV with the phone number redacted |
 
 ## Themes
 
@@ -50,16 +53,20 @@ will cut your face off.
 to harvest. If you change it, reverse the new address the same way — don't put a plain
 `mailto:` back in. Trade-off: with JavaScript off, the Email link does nothing.
 
-### Adding a blog post
+### Adding an award with a certificate
 
-`blogs.html` currently shows an empty-state note, with a commented-out `.post-list`
-template below it. To publish:
+In `education.html`, a row that opens a certificate is a `<li class="has-cert">` wrapping a
+`<button class="cert-open">` with two data attributes:
 
-1. Create `posts/your-post.html` — copy any page as a starting point and change
-   `styles.css` → `../styles.css`, `script.js` → `../script.js`,
-   `images/profile.jpg` → `../images/profile.jpg`, and the nav `href`s to `../`.
-2. Delete the `.empty-note` paragraph.
-3. Uncomment the `.post-list` block and add an entry, newest first.
+- `data-cert` — path to the image under `images/certificates/`
+- `data-cert-title` — the caption shown under the image in the lightbox
+
+A row *without* a certificate is a plain `<li>` with two `<span>`s. Only rows inside a
+`button.cert-open` get the document icon, so the icon always means "this opens something."
+
+Certificates are JPEGs capped at 1400px wide. PDFs were rendered with PyMuPDF; note that
+some source PDFs are very large (one page was 7438pt wide) and need a reduced zoom factor
+or MuPDF refuses with "Overly large image".
 
 ## Publishing
 
