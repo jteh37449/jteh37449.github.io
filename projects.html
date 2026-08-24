@@ -4,7 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projects - Jasper Tan</title>
-<meta name="description" content="Projects by Jasper Tan.">
+<meta name="description" content="Projects and work experience of Jasper Tan — Customer Service Digital Employee, chess engine optimisation, and a real-time MERN chat application.">
+<script>
+  (function () {
+    var t;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (!t) {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,15 +22,21 @@
 <header class="masthead">
   <div class="masthead__inner">
     <a class="site-title" href="index.html">Jasper Tan | Homepage</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="education.html">Education</a></li>
-      <li><a href="projects.html" class="is-active">Projects</a></li>
-      <li><a href="blogs.html">Blogs</a></li>
-      <li><a href="codes.html">Codes</a></li>
-    </ul>
+    <nav class="masthead__nav">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="education.html">Education</a></li>
+        <li><a href="projects.html" class="is-active">Projects</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="codes.html">Codes</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme" title="Switch theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
   </div>
 </header>
 
@@ -31,8 +47,8 @@
       <img src="images/profile.jpg" alt="Jasper Tan">
     </div>
     <div class="author__name">Jasper Tan</div>
-    <p class="author__bio">Student at Xi'an Jiaotong University</p>
-    <p class="author__location">Xi'an, China</p>
+    <p class="author__bio">Computer Science student at Xi'an Jiaotong University</p>
+    <p class="author__location">Xi'an, Shaanxi, China</p>
     <ul class="author__urls">
       <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj">Email</a></li>
       <li><a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a></li>
@@ -44,44 +60,62 @@
 
   <main class="page">
     <h1 class="page__title">Projects</h1>
-    <p>
-      A short framing sentence about the kind of work you take on. Delete this if the projects
-      speak for themselves.
-    </p>
 
     <div class="card">
-      <h3 class="card__title">Project One</h3>
-      <div class="tags"><span class="tag">Tech</span><span class="tag">Stack</span></div>
+      <div class="card__head">
+        <h3 class="card__title">Customer Service Digital Employee &mdash; GDP Labs</h3>
+        <span class="card__when">Jul 2026 &ndash; Sep 2026</span>
+      </div>
+      <div class="tags">
+        <span class="tag">Internship</span><span class="tag">Agentic AI</span><span class="tag">Integrations</span>
+      </div>
       <p>
-        Two or three sentences: what the project does, why you built it, and what was
-        interesting or difficult about it. Mention the outcome if there was one — users,
-        a result, a grade, a deployment.
+        Software developer internship building features for a Customer Service Digital Employee
+        (CS-DE) &mdash; an agent that handles support work through conversation. My work covered:
+      </p>
+      <ul>
+        <li>Connecting the CS-DE to a third-party board to fetch board data for specified regions.</li>
+        <li>Creating and updating tickets on that board directly from a chat conversation.</li>
+        <li>Reading existing tickets and generating PDF and DOCX drafts of them from chat.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card__head">
+        <h3 class="card__title">Efficient Chess Engine &mdash; Kaggle &times; Google</h3>
+        <span class="card__when">Dec 2024 &ndash; Feb 2025</span>
+      </div>
+      <div class="tags">
+        <span class="tag">C++</span><span class="tag">Optimisation</span><span class="tag">Top 2%</span>
+      </div>
+      <p>
+        The FIDE &amp; Google Efficient Chess AI Challenge asked for a chess engine running under
+        severe constraints: <strong>5&nbsp;MiB of RAM, a single 2.20&nbsp;GHz core, and a 64&nbsp;KB
+        submission size limit</strong>. I studied and benchmarked a range of open-source engines,
+        then optimised one to fit inside that budget without losing playing strength.
+      </p>
+      <p>
+        Finished <strong>18th out of 1128 teams</strong> &mdash; the top 2% of the leaderboard.
       </p>
       <div class="card__links">
-        <a href="#" target="_blank" rel="noopener">Live Demo</a>
-        <a href="#" target="_blank" rel="noopener">Source</a>
+        <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle profile</a>
       </div>
     </div>
 
     <div class="card">
-      <h3 class="card__title">Project Two</h3>
-      <div class="tags"><span class="tag">Tech</span><span class="tag">Stack</span></div>
+      <div class="card__head">
+        <h3 class="card__title">Chat-Space &mdash; Real-time MERN Chat App</h3>
+        <span class="card__when">May 2025 &ndash; Jun 2025</span>
+      </div>
+      <div class="tags">
+        <span class="tag">MongoDB</span><span class="tag">Express</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Socket.IO</span>
+      </div>
       <p>
-        Description of the second project. Duplicate this whole
-        <code>&lt;div class="card"&gt;</code> block for each additional project.
+        A real-time chat application built on the MERN stack, using Socket.IO for bi-directional
+        communication between clients and server so messages arrive without polling.
       </p>
       <div class="card__links">
-        <a href="#" target="_blank" rel="noopener">Live Demo</a>
-        <a href="#" target="_blank" rel="noopener">Source</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3 class="card__title">Project Three</h3>
-      <div class="tags"><span class="tag">Tech</span><span class="tag">Stack</span></div>
-      <p>Description of the third project.</p>
-      <div class="card__links">
-        <a href="#" target="_blank" rel="noopener">Source</a>
+        <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener">Source</a>
       </div>
     </div>
   </main>

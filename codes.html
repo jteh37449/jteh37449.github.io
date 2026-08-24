@@ -4,7 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Codes - Jasper Tan</title>
-<meta name="description" content="Open-source code and tools released by Jasper Tan.">
+<meta name="description" content="Code, repositories, and competitive programming profiles of Jasper Tan.">
+<script>
+  (function () {
+    var t;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (!t) {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,15 +22,21 @@
 <header class="masthead">
   <div class="masthead__inner">
     <a class="site-title" href="index.html">Jasper Tan | Homepage</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="education.html">Education</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="blogs.html">Blogs</a></li>
-      <li><a href="codes.html" class="is-active">Codes</a></li>
-    </ul>
+    <nav class="masthead__nav">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="education.html">Education</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="codes.html" class="is-active">Codes</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme" title="Switch theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
   </div>
 </header>
 
@@ -31,8 +47,8 @@
       <img src="images/profile.jpg" alt="Jasper Tan">
     </div>
     <div class="author__name">Jasper Tan</div>
-    <p class="author__bio">Student at Xi'an Jiaotong University</p>
-    <p class="author__location">Xi'an, China</p>
+    <p class="author__bio">Computer Science student at Xi'an Jiaotong University</p>
+    <p class="author__location">Xi'an, Shaanxi, China</p>
     <ul class="author__urls">
       <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj">Email</a></li>
       <li><a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a></li>
@@ -45,40 +61,64 @@
   <main class="page">
     <h1 class="page__title">Codes</h1>
     <p>
-      Open-source code, libraries, and tools I have released. Everything here is on
-      <a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a>. My
-      competitive programming solutions live on
-      <a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces</a>
-      and my notebooks on
-      <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle</a>.
+      Repositories and profiles where my code lives.
     </p>
+
+    <h1>Repositories</h1>
 
     <div class="card">
       <h3 class="card__title">
-        <a href="#" target="_blank" rel="noopener">repository-name</a>
+        <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener">Chat-Space</a>
       </h3>
-      <div class="tags"><span class="tag">Language</span><span class="tag">MIT</span></div>
+      <div class="tags"><span class="tag">JavaScript</span><span class="tag">MERN</span><span class="tag">Socket.IO</span></div>
       <p>
-        What the code does and who it is for. Note the license and any dependency or platform
-        requirements a user would need to know before cloning it.
+        Full-stack real-time chat application &mdash; MongoDB, Express, React, and Node.js, with
+        Socket.IO handling bi-directional messaging.
       </p>
       <div class="card__links">
-        <a href="#" target="_blank" rel="noopener">Repository</a>
-        <a href="#" target="_blank" rel="noopener">Documentation</a>
+        <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener">Repository</a>
       </div>
     </div>
 
     <div class="card">
       <h3 class="card__title">
-        <a href="#" target="_blank" rel="noopener">another-repository</a>
+        <a href="https://github.com/jteh37449/jteh37449.github.io" target="_blank" rel="noopener">jteh37449.github.io</a>
       </h3>
-      <div class="tags"><span class="tag">Language</span><span class="tag">Apache-2.0</span></div>
+      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
       <p>
-        Description of the second release. Duplicate this
-        <code>&lt;div class="card"&gt;</code> block for each additional repository.
+        This site. Static HTML and CSS with no build step, served by GitHub Pages.
       </p>
       <div class="card__links">
-        <a href="#" target="_blank" rel="noopener">Repository</a>
+        <a href="https://github.com/jteh37449/jteh37449.github.io" target="_blank" rel="noopener">Repository</a>
+      </div>
+    </div>
+
+    <h1>Profiles</h1>
+
+    <div class="card">
+      <h3 class="card__title">
+        <a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces &mdash; Jteh</a>
+      </h3>
+      <div class="tags"><span class="tag">C++</span><span class="tag">Candidate Master</span></div>
+      <p>
+        Competitive programming. Currently rated Candidate Master, in the top 3% of users.
+      </p>
+      <div class="card__links">
+        <a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Profile</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card__title">
+        <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle &mdash; tanjasper</a>
+      </h3>
+      <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span></div>
+      <p>
+        Machine learning competitions and notebooks. Finished in the top 2% of the FIDE &amp;
+        Google Efficient Chess AI Challenge.
+      </p>
+      <div class="card__links">
+        <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Profile</a>
       </div>
     </div>
   </main>

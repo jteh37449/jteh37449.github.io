@@ -4,7 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Education - Jasper Tan</title>
-<meta name="description" content="Education and achievements of Jasper Tan.">
+<meta name="description" content="Education, awards, and skills of Jasper Tan, Computer Science student at Xi'an Jiaotong University.">
+<script>
+  (function () {
+    var t;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (!t) {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,15 +22,21 @@
 <header class="masthead">
   <div class="masthead__inner">
     <a class="site-title" href="index.html">Jasper Tan | Homepage</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="education.html" class="is-active">Education</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="blogs.html">Blogs</a></li>
-      <li><a href="codes.html">Codes</a></li>
-    </ul>
+    <nav class="masthead__nav">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="education.html" class="is-active">Education</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="codes.html">Codes</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme" title="Switch theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
   </div>
 </header>
 
@@ -31,8 +47,8 @@
       <img src="images/profile.jpg" alt="Jasper Tan">
     </div>
     <div class="author__name">Jasper Tan</div>
-    <p class="author__bio">Student at Xi'an Jiaotong University</p>
-    <p class="author__location">Xi'an, China</p>
+    <p class="author__bio">Computer Science student at Xi'an Jiaotong University</p>
+    <p class="author__location">Xi'an, Shaanxi, China</p>
     <ul class="author__urls">
       <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj">Email</a></li>
       <li><a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a></li>
@@ -47,57 +63,90 @@
 
     <div class="entry">
       <div class="entry__head">
-        <h3 class="entry__title">B.Eng. in Your Major</h3>
-        <span class="entry__meta">Year &ndash; Present</span>
+        <h3 class="entry__title">B.Eng. in Computer Science</h3>
+        <span class="entry__meta">Sep 2023 &ndash; Jun 2027</span>
       </div>
-      <p class="entry__sub">Xi'an Jiaotong University &middot; Xi'an, China</p>
+      <p class="entry__sub">Xi'an Jiaotong University &middot; Xi'an, Shaanxi, China</p>
       <p>
-        <em>[A sentence or two on your focus within the programme — specialisation, thesis topic,
-        or the coursework most relevant to what you want to do next. GPA or class rank goes here
-        too if you want to include it.]</em>
+        Coursework across object-oriented programming, operating systems, algorithms, and data
+        structures, alongside sustained work in competitive programming and full-stack
+        development.
       </p>
     </div>
 
-    <div class="entry">
-      <div class="entry__head">
-        <h3 class="entry__title">High School</h3>
-        <span class="entry__meta">Year &ndash; Year</span>
-      </div>
-      <p class="entry__sub">Your School &middot; City, Country</p>
-      <p><em>[Relevant subjects, streams, or final results.]</em></p>
-    </div>
-
-    <h1>Achievements &amp; Awards</h1>
-
-    <div class="entry">
-      <div class="entry__head">
-        <h3 class="entry__title">Name of Award or Scholarship</h3>
-        <span class="entry__meta">2026</span>
-      </div>
-      <p class="entry__sub">Awarding body</p>
-      <p>One line on what it recognises and how competitive it was.</p>
-    </div>
-
-    <div class="entry">
-      <div class="entry__head">
-        <h3 class="entry__title">Competition Placement or Honour</h3>
-        <span class="entry__meta">2025</span>
-      </div>
-      <p class="entry__sub">Organiser</p>
-      <p>What you did and what the result was.</p>
-    </div>
-
-    <h1>Certifications</h1>
-    <ul>
-      <li><strong>Certification name</strong> &mdash; Issuing organisation, 2026</li>
-      <li><strong>Another certification</strong> &mdash; Issuing organisation, 2025</li>
+    <h1>Awards &amp; Achievements</h1>
+    <ul class="award-list">
+      <li>
+        <span>Codeforces &mdash; Candidate Master, top 3% of users</span>
+        <span class="award-when">Current</span>
+      </li>
+      <li>
+        <span>Baidu Star Competitive Programming Competition Finals &mdash; Bronze Medal</span>
+        <span class="award-when">Dec 2025</span>
+      </li>
+      <li>
+        <span>Matiji.net National Competitive Programming Competition &mdash; Silver Medal</span>
+        <span class="award-when">Jul 2025</span>
+      </li>
+      <li>
+        <span>2025 ICPC Shaanxi Provincial Cup &mdash; Second Prize</span>
+        <span class="award-when">May 2025</span>
+      </li>
+      <li>
+        <span>National Finals, Team Programming Ladder Competition &mdash; Second Prize</span>
+        <span class="award-when">Apr 2025</span>
+      </li>
+      <li>
+        <span>Harvard University CS50x 2025 Puzzle Day &mdash; Winner</span>
+        <span class="award-when">Mar 2025</span>
+      </li>
+      <li>
+        <span>Kaggle FIDE &amp; Google Efficient Chess AI Challenge &mdash; 18th of 1128 teams (top 2%)</span>
+        <span class="award-when">Dec 2024 &ndash; Feb 2025</span>
+      </li>
+      <li>
+        <span>China Computer Federation (CCF) &mdash; Problem Tester</span>
+        <span class="award-when">Dec 2024 &ndash; Jan 2025</span>
+      </li>
+      <li>
+        <span>4th XJTU 3-Minute Academic English Speech Competition &mdash; Excellence Award</span>
+        <span class="award-when">Nov 2024</span>
+      </li>
+      <li>
+        <span>4th International Chinese Traditional Sports Championship &mdash; 6th, Traditional Dragon Dance</span>
+        <span class="award-when">Jun 2024</span>
+      </li>
     </ul>
 
-    <h1>Relevant Coursework</h1>
-    <p>
-      Course One &middot; Course Two &middot; Course Three &middot; Course Four &middot;
-      Course Five &middot; Course Six
-    </p>
+    <h1>Skills</h1>
+    <div class="skill-group">
+      <p><strong>Languages &amp; frameworks:</strong> C++, C, Python, PyTorch, React, Node.js</p>
+    </div>
+    <div class="skill-group">
+      <p>
+        <strong>Areas:</strong> competitive programming, object-oriented programming, operating
+        systems, full-stack development, agentic coding
+      </p>
+    </div>
+    <div class="skill-group">
+      <p><strong>Spoken languages:</strong> English, Chinese, and Indonesian &mdash; all fluent</p>
+    </div>
+
+    <h1>Activities</h1>
+    <ul class="award-list">
+      <li>
+        <span>PSA English Association, XJTU &mdash; Member</span>
+        <span class="award-when">Sep 2024 &ndash; Present</span>
+      </li>
+      <li>
+        <span>XJTU Dragon and Lion Dance Association &mdash; Member</span>
+        <span class="award-when">Feb 2024 &ndash; Jul 2024</span>
+      </li>
+      <li>
+        <span>PPI Xi'an (Indonesian Student Association in Xi'an) &mdash; Committee</span>
+        <span class="award-when">Sep 2023 &ndash; Jul 2024</span>
+      </li>
+    </ul>
   </main>
 
 </div>

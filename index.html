@@ -4,7 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About - Jasper Tan</title>
-<meta name="description" content="Homepage of Jasper Tan.">
+<meta name="description" content="Jasper Tan — Computer Science student at Xi'an Jiaotong University. Competitive programmer (Codeforces Candidate Master) and full-stack developer.">
+<script>
+  // Set the theme before first paint so there is no flash of the wrong colours.
+  (function () {
+    var t;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (!t) {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,15 +23,21 @@
 <header class="masthead">
   <div class="masthead__inner">
     <a class="site-title" href="index.html">Jasper Tan | Homepage</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="education.html">Education</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="blogs.html">Blogs</a></li>
-      <li><a href="codes.html">Codes</a></li>
-    </ul>
+    <nav class="masthead__nav">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="education.html">Education</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="codes.html">Codes</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme" title="Switch theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
   </div>
 </header>
 
@@ -32,8 +49,8 @@
       <img src="images/profile.jpg" alt="Jasper Tan">
     </div>
     <div class="author__name">Jasper Tan</div>
-    <p class="author__bio">Student at Xi'an Jiaotong University</p>
-    <p class="author__location">Xi'an, China</p>
+    <p class="author__bio">Computer Science student at Xi'an Jiaotong University</p>
+    <p class="author__location">Xi'an, Shaanxi, China</p>
     <ul class="author__urls">
       <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj">Email</a></li>
       <li><a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a></li>
@@ -45,32 +62,62 @@
 
   <main class="page">
     <p>
-      I am a student at <strong>Xi'an Jiaotong University</strong>. <em>[Add your major and year
-      here.]</em> I spend most of my time on competitive programming and machine learning — you
-      can find my work on <a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces</a>,
-      <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle</a>, and
-      <a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a>.
+      I am an undergraduate <strong>Computer Science</strong> student at
+      <strong>Xi'an Jiaotong University</strong>, graduating in 2027. I am Indonesian and based
+      in Xi'an, and I work mostly in C++ and Python.
     </p>
 
     <p>
-      <em>[Second paragraph: say more about what you focus on, any research or side work that is
-      ongoing, and what you are currently looking for — internships, collaborators, or graduate
-      positions.]</em>
+      Most of my time goes into <strong>competitive programming</strong>. I am a Candidate Master
+      on <a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces</a>
+      (top 3% of users), and I have medalled at the Baidu Star finals, the Matiji national
+      competition, the ICPC Shaanxi Provincial Cup, and the national finals of the Team
+      Programming Ladder Competition. Outside of contests I build full-stack web applications
+      and work on machine learning problems on
+      <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle</a>.
+    </p>
+
+    <p>
+      I am currently a software developer intern at <strong>GDP Labs</strong>, working on a
+      Customer Service Digital Employee — see <a href="projects.html">Projects</a> for details.
     </p>
 
     <h1>News</h1>
     <ul class="news-list">
       <li>
-        <span class="date">Aug 2026</span>
-        Something you want to highlight — an award, an acceptance, a new position, a released project.
+        <span class="date">Jul 2026</span>
+        Started a software developer internship at GDP Labs, building features for a Customer
+        Service Digital Employee.
       </li>
       <li>
-        <span class="date">Jun 2026</span>
-        Another recent update. Keep these short, one line each, newest first.
+        <span class="date">Dec 2025</span>
+        Bronze medal at the Baidu Star Competitive Programming Competition finals.
       </li>
       <li>
-        <span class="date">Mar 2026</span>
-        An older item. Delete this list entirely if you have nothing to put in it yet.
+        <span class="date">Jul 2025</span>
+        Silver medal at the Matiji.net National Competitive Programming Competition.
+      </li>
+      <li>
+        <span class="date">Jun 2025</span>
+        Released <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener">Chat-Space</a>,
+        a real-time MERN stack chat application.
+      </li>
+      <li>
+        <span class="date">May 2025</span>
+        Second Prize at the 2025 ICPC Shaanxi Provincial Cup.
+      </li>
+      <li>
+        <span class="date">Apr 2025</span>
+        Second Prize at the national finals of the Team Programming Ladder Competition.
+      </li>
+      <li>
+        <span class="date">Mar 2025</span>
+        Winner of Harvard University's CS50x 2025 Puzzle Day.
+      </li>
+      <li>
+        <span class="date">Feb 2025</span>
+        Finished 18th of 1128 teams (top 2%) in the Kaggle FIDE &amp; Google Efficient Chess AI
+        Challenge.
       </li>
     </ul>
   </main>

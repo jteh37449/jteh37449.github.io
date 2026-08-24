@@ -2,71 +2,74 @@
 
 Jasper Tan's personal site, served by GitHub Pages at https://jteh37449.github.io
 
-Layout follows the Minimal Mistakes academic pattern: a top navigation bar, a left sidebar
-with photo and links, and a right content column.
+Static HTML and CSS, no build step. Layout follows the Minimal Mistakes academic pattern:
+a top navigation bar, a left sidebar with photo and links, and a right content column.
 
 ## Files
 
 | File | Contents |
 |---|---|
-| `index.html` | Homepage — intro paragraphs and a News list |
-| `education.html` | University, achievements, awards, certifications, coursework |
-| `projects.html` | Project write-ups |
-| `blogs.html` | Index of posts (individual posts go in `posts/`) |
-| `codes.html` | Released repositories and tools |
-| `styles.css` | All styling |
-| `script.js` | Mobile nav toggle and footer year |
-| `images/profile.jpg` | Avatar, cropped square from `Me.jpg` |
+| `index.html` | Homepage — intro and News |
+| `education.html` | Degree, awards, skills, activities |
+| `projects.html` | GDP Labs internship, chess engine, Chat-Space |
+| `blogs.html` | Post index (currently empty — see below) |
+| `codes.html` | Repositories and competitive programming profiles |
+| `styles.css` | All styling, including both colour themes |
+| `script.js` | Theme toggle, mobile nav, email assembly, footer year |
+| `images/profile.jpg` | Avatar, cropped square from the original photo |
 
-## Still to fill in
+## Themes
 
-Placeholder text is wrapped in `<em>[square brackets]</em>` so it is easy to spot on the page.
-Search the HTML files for `[` to find every spot:
+Light and dark. The `<head>` of every page carries a small inline script that reads
+`localStorage.theme` (falling back to the OS `prefers-color-scheme`) and sets
+`data-theme` on `<html>` **before** the stylesheet paints, so there is no flash of the
+wrong colours on load. The button in the masthead flips it and saves the choice.
 
-- **index.html** — major and year, and the whole second paragraph; the News list is invented, replace or delete it
-- **education.html** — degree name, years, high school, and all the awards/certifications/coursework entries
-- **projects.html** — all three project cards
-- **blogs.html** — all three post entries
-- **codes.html** — both repository cards
+Colours are CSS variables in `styles.css`, defined three times:
+
+1. `:root` — the light palette.
+2. `@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) }` — the
+   no-JavaScript fallback.
+3. `:root[data-theme="dark"]` — last, so an explicit choice beats the OS setting.
+
+Change a colour in all three places or the themes drift apart. Both palettes clear
+WCAG AA contrast; the muted grey is `#6a7278` rather than the theme's original
+`#7a8288`, which was only 3.9:1 on white.
 
 ## Editing
 
-**The sidebar is duplicated in all five HTML files.** It is the block starting with
-`<aside class="sidebar">`. When you change your bio, location, or links, change it in every
-file — otherwise the pages disagree with each other. Same for `Jasper Tan` in the `<title>`,
-masthead, and footer of each page.
+**The masthead and sidebar are duplicated in all five HTML files** (no build step, no
+includes). Editing your bio, links, or nav means editing five files, or the pages will
+disagree with each other.
 
-To swap the photo: the CSS crops to a circle, so use a square source or your face will be
-center-cropped out. `images/profile.jpg` was cropped from `Me.jpg` around the face.
+To swap the photo: the CSS crops to a circle, so use a square source or the centre crop
+will cut your face off.
 
 **The email address is stored reversed** (`data-e="moc.liamg@..."`) and reassembled by
-`script.js` at load, so the plain address never appears in the page source for scrapers to
-harvest. If you change it, reverse the new address the same way — don't put a plain
-`mailto:` back in. The trade-off: with JavaScript disabled the Email link does nothing.
-
-Colors, fonts, and the sidebar width are the CSS variables in the `:root` block at the top of
-`styles.css`.
+`script.js` at load, so the plain address never appears in the page source for scrapers
+to harvest. If you change it, reverse the new address the same way — don't put a plain
+`mailto:` back in. Trade-off: with JavaScript off, the Email link does nothing.
 
 ### Adding a blog post
 
-Create `posts/your-post.html` (copy any page as a starting point, adjust the relative paths to
-`../styles.css` and `../script.js`), then add an entry to the `.post-list` in `blogs.html`.
+`blogs.html` currently shows an empty-state note, with a commented-out `.post-list`
+template below it. To publish:
+
+1. Create `posts/your-post.html` — copy any page as a starting point and change
+   `styles.css` → `../styles.css`, `script.js` → `../script.js`,
+   `images/profile.jpg` → `../images/profile.jpg`, and the nav `href`s to `../`.
+2. Delete the `.empty-note` paragraph.
+3. Uncomment the `.post-list` block and add an entry, newest first.
 
 ## Publishing
 
-Create a repo named exactly `jteh37449.github.io`, then:
+The remote is already configured. To update the live site:
 
 ```bash
-git init
-git add .
-git commit -m "Initial site"
-git branch -M main
-git remote add origin https://github.com/jteh37449/jteh37449.github.io.git
-git push -u origin main
+git add -A && git commit -m "Your message" && git push
 ```
 
-In the repo's Settings → Pages, set Source to "Deploy from a branch", branch `main`, folder
-`/ (root)`. The site goes live at https://jteh37449.github.io within a minute or two.
+GitHub Pages redeploys automatically, usually within a minute.
 
 ## Local preview
 
@@ -74,4 +77,5 @@ In the repo's Settings → Pages, set Source to "Deploy from a branch", branch `
 python -m http.server 8000
 ```
 
-Then open http://localhost:8000
+Then open http://localhost:8000 — and hard-reload (Ctrl+F5) after editing CSS or JS,
+since the browser caches both aggressively.

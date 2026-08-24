@@ -1,21 +1,60 @@
 /* ---------------------------------------------------------------
    Academic portfolio — palette & typography
-   Edit the variables below to restyle the whole site.
+
+   Theming: a small inline script in each page's <head> sets
+   data-theme="light|dark" on <html> before paint, so there is no
+   flash. The prefers-color-scheme block below is the no-JavaScript
+   fallback; the [data-theme="dark"] block comes after it so an
+   explicit choice always wins.
    --------------------------------------------------------------- */
 :root {
   --text: #494e52;
   --text-strong: #26292c;
-  --muted: #7a8288;
-  --border: #f2f3f3;
-  --border-strong: #e3e6e8;
+  /* #6a7278 rather than the theme's original #7a8288: the lighter grey is
+     only 3.9:1 on white, below the 4.5:1 WCAG AA threshold for body text. */
+  --muted: #6a7278;
+  --border: #eceef0;
+  --border-strong: #dfe3e6;
   --link: #2f7f93;
   --link-hover: #1f5c6b;
   --bg: #ffffff;
   --bg-subtle: #fafbfb;
+  --code-bg: #f4f6f7;
   --sidebar-width: 200px;
   --max-width: 1280px;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* No-JS fallback: follow the system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --text: #c4cad0;
+    --text-strong: #eef1f4;
+    --muted: #8c959d;
+    --border: #262b31;
+    --border-strong: #333a42;
+    --link: #6fb3c7;
+    --link-hover: #93cbdb;
+    --bg: #15181b;
+    --bg-subtle: #1a1e22;
+    --code-bg: #22272c;
+  }
+}
+
+/* Explicit choice wins over the system preference */
+:root[data-theme="dark"] {
+  --text: #c4cad0;
+  --text-strong: #eef1f4;
+  --muted: #8c959d;
+  --border: #262b31;
+  --border-strong: #333a42;
+  --link: #6fb3c7;
+  --link-hover: #93cbdb;
+  --bg: #15181b;
+  --bg-subtle: #1a1e22;
+  --code-bg: #22272c;
 }
 
 * { box-sizing: border-box; }
@@ -35,10 +74,19 @@ body {
 a { color: var(--link); text-decoration: none; }
 a:hover { color: var(--link-hover); text-decoration: underline; }
 
+code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: var(--code-bg);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+
 /* ---------------- Masthead ---------------- */
 .masthead {
   border-bottom: 1px solid var(--border);
   background: var(--bg);
+  position: relative;
 }
 
 .masthead__inner {
@@ -61,6 +109,12 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 }
 .site-title:hover { color: var(--text-strong); text-decoration: none; }
 
+.masthead__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .nav-links {
   list-style: none;
   display: flex;
@@ -78,6 +132,35 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 }
 .nav-links a:hover { color: var(--text-strong); text-decoration: none; }
 .nav-links a.is-active { color: var(--text-strong); }
+
+/* Theme toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.theme-toggle:hover { color: var(--text-strong); border-color: var(--muted); }
+.theme-toggle svg { width: 17px; height: 17px; display: block; }
+
+/* Which icon shows. Default (light): offer the moon. */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+}
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 .nav-toggle {
   display: none;
@@ -146,9 +229,8 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 .author__urls {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 12px 0 0;
   border-top: 1px solid var(--border);
-  padding-top: 12px;
 }
 
 .author__urls li { margin-bottom: 8px; }
@@ -226,7 +308,7 @@ hr {
   font-weight: 700;
 }
 
-/* Education entries */
+/* Education / award entries */
 .entry {
   padding: 18px 0;
   border-bottom: 1px solid var(--border);
@@ -262,12 +344,40 @@ hr {
 
 .entry p { margin: 0 0 8px; }
 
+/* Compact award rows */
+.award-list { list-style: none; padding-left: 0; }
+
+.award-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.award-list li:last-child { border-bottom: 0; }
+
+.award-list .award-when {
+  color: var(--muted);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
 /* Project / code cards */
 .card {
   padding: 20px 0;
   border-bottom: 1px solid var(--border);
 }
 .card:last-child { border-bottom: 0; }
+
+.card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 
 .card__title {
   margin: 0 0 6px;
@@ -279,9 +389,11 @@ hr {
 .card__title a { color: var(--text-strong); }
 .card__title a:hover { color: var(--link); }
 
+.card__when { color: var(--muted); font-size: 14px; white-space: nowrap; }
+
 .card p { margin: 0 0 10px; }
 
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 
 .tag {
   font-size: 12px;
@@ -295,6 +407,16 @@ hr {
 }
 
 .card__links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; font-weight: 600; }
+
+/* Skills */
+.skill-group { margin-bottom: 14px; }
+.skill-group strong { color: var(--text-strong); }
+
+/* Empty state */
+.empty-note {
+  padding: 28px 0;
+  color: var(--muted);
+}
 
 /* Blog list */
 .post-list { list-style: none; padding-left: 0; }
@@ -385,9 +507,10 @@ hr {
   .nav-links li { width: 100%; }
   .nav-links a { display: block; padding: 10px 0; }
 
-  .masthead { position: relative; }
-
   .page__title { font-size: 27px; }
+
   .news-list li { padding-left: 0; }
   .news-list .date { position: static; display: block; width: auto; margin-bottom: 2px; }
+
+  .award-list li { flex-direction: column; gap: 2px; }
 }

@@ -1,3 +1,20 @@
+// Theme toggle. The initial theme is applied by the inline script in each
+// page's <head> (before paint, to avoid a flash); this only handles clicks.
+const themeToggle = document.getElementById('themeToggle');
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch (e) {
+      /* private mode — the choice just will not persist */
+    }
+  });
+}
+
 // Footer year
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -10,19 +27,19 @@ document.querySelectorAll('a.email-link[data-e]').forEach((a) => {
 });
 
 // Mobile nav
-const toggle = document.getElementById('navToggle');
-const links = document.getElementById('navLinks');
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
 
-if (toggle && links) {
-  toggle.addEventListener('click', () => {
-    const open = links.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(open));
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', String(open));
   });
 
-  links.addEventListener('click', (e) => {
+  navLinks.addEventListener('click', (e) => {
     if (e.target.tagName === 'A') {
-      links.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
+      navLinks.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
     }
   });
 }
