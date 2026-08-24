@@ -9,12 +9,12 @@ a top navigation bar, a left sidebar with photo and links, and a right content c
 
 | File | Contents |
 |---|---|
-| `index.html` | Homepage — intro and News |
-| `education.html` | Degree, awards, skills, activities |
-| `projects.html` | GDP Labs internship, chess engine, Chat-Space |
-| `activity.html` | Contest problem testing and volunteering |
-| `codes.html` | Repositories and competitive programming profiles |
-| `blogs.html` | Redirect stub → `activity.html` (the page was briefly live under the old name) |
+| `index.html` | Homepage — intro and News (served at `/`) |
+| `education/index.html` | Degree, awards, skills, activities (served at `/education/`) |
+| `projects/index.html` | GDP Labs internship, chess engine, Chat-Space (`/projects/`) |
+| `activity/index.html` | Contest problem testing and volunteering (`/activity/`) |
+| `codes/index.html` | Repositories and competitive programming profiles (`/codes/`) |
+| `*.html` at root | Redirect stubs for the old `.html` URLs (see below) |
 | `styles.css` | All styling, including both colour themes |
 | `script.js` | Theme toggle, certificate lightbox, mobile nav, email assembly, footer year |
 | `images/profile.jpg` | Avatar, cropped square from the original photo |
@@ -65,6 +65,23 @@ trade for not maintaining a second set of pages.
 
 Proper nouns stay in English on purpose: brand names (GitHub, Codeforces, Kaggle), official
 round names ("Codeforces Round 1089 (Div. 2)"), repo names, and language/framework names.
+
+## URLs
+
+Pages live at `<name>/index.html`, so GitHub Pages serves them without an extension:
+`/education/`, `/projects/`, `/activity/`, `/codes/`. The homepage is `index.html` at
+the root, served at `/`.
+
+**All internal links and asset paths are root-absolute** (`/styles.css`, `/education/`,
+`/images/...`). Relative paths would otherwise have to differ between the root page and
+the nested ones. This means the site must be served from a domain root — true for a
+`<username>.github.io` user site and for `python -m http.server`, but it will not work
+if you open the files directly with `file://`.
+
+The old `education.html`, `projects.html`, `activity.html`, `codes.html`, and
+`blogs.html` remain at the root as redirect stubs, since those URLs were live for a few
+days. They are `noindex` with a canonical pointing at the new location. Safe to delete
+once you are confident nothing links to them.
 
 ## Entrance animations
 
@@ -118,10 +135,10 @@ to harvest. If you change it, reverse the new address the same way — don't put
 
 ### Adding an award with a certificate
 
-In `education.html`, a row that opens a certificate is a `<li class="has-cert">` wrapping a
+In `education/index.html`, a row that opens a certificate is a `<li class="has-cert">` wrapping a
 `<button class="cert-open">` with two data attributes:
 
-- `data-cert` — path to the image under `images/certificates/`
+- `data-cert` — root-absolute path, e.g. `/images/certificates/foo.jpg`
 - `data-cert-title` — the caption shown under the image in the lightbox
 
 A row *without* a certificate is a plain `<li>` with two `<span>`s. Only rows inside a

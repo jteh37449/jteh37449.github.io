@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codes - Jasper Tan</title>
+<meta name="description" content="Code, repositories, and competitive programming profiles of Jasper Tan.">
+<script>
+  (function () {
+    var t, l;
+    try { t = localStorage.getItem('theme'); l = localStorage.getItem('locale'); } catch (e) {}
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    if (!l) l = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+    var d = document.documentElement;
+    d.setAttribute('data-theme', t);
+    d.setAttribute('data-locale', l);
+    d.lang = l === 'zh' ? 'zh-CN' : 'en';
+    // Entrance animations are opt-in via this class, so no JS means no
+    // hidden content. The timeout is a failsafe on the wall clock: it
+    // fires even where the animation timeline never advances.
+    d.classList.add('anim');
+    setTimeout(function () { d.classList.add('anim-settled'); }, 1600);
+  })();
+</script>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body data-zh-title="代码 - 陈佃铭">
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="site-title" href="/" data-zh="陈佃铭 | 主页">Jasper Tan | Homepage</a>
+    <nav class="masthead__nav">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/education/" data-zh="教育背景">Education</a></li>
+        <li><a href="/projects/" data-zh="项目">Projects</a></li>
+        <li><a href="/activity/" data-zh="活动">Activity</a></li>
+        <li><a href="/codes/" class="is-active" data-zh="代码">Codes</a></li>
+      </ul>
+      <button class="locale-toggle" id="localeToggle" aria-label="Switch language / 切换语言" title="中文 / English">
+        <span class="locale-to-zh">中</span><span class="locale-to-en">EN</span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme" title="Switch theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="author__avatar">
+      <img src="/images/profile.jpg" alt="Jasper Tan">
+    </div>
+    <div class="author__name" data-zh="陈佃铭 Jasper Tan">Jasper Tan</div>
+    <p class="author__bio" data-zh="西安交通大学 计算机科学与技术">Computer Science student at Xi'an Jiaotong University</p>
+    <p class="author__location" data-zh="中国 陕西省 西安市">Xi'an, Shaanxi, China</p>
+    <ul class="author__urls">
+      <li><a class="email-link" href="#" data-e="moc.liamg@nawul.nat.repsaj" data-zh="邮箱">Email</a></li>
+      <li><a href="/files/Jasper_Tan_CV.pdf" target="_blank" rel="noopener"
+             data-zh="简历 (PDF)" data-zh-href="/files/Jasper_Tan_CV_zh.pdf">CV (PDF)</a></li>
+      <li><a href="https://github.com/jteh37449" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces</a></li>
+      <li><a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle</a></li>
+      <li><a href="https://www.linkedin.com/in/jasper-tan-xian/" target="_blank" rel="noopener" data-zh="领英">LinkedIn</a></li>
+    </ul>
+  </aside>
+
+  <main class="page">
+    <h1 class="page__title" data-zh="代码">Codes</h1>
+    <p data-zh="我的代码所在的仓库与平台主页。">
+      Repositories and profiles where my code lives.
+    </p>
+
+    <h1 data-zh="代码仓库">Repositories</h1>
+
+    <div class="card">
+      <h3 class="card__title">
+        <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener">Chat-Space</a>
+      </h3>
+      <div class="tags"><span class="tag">JavaScript</span><span class="tag">MERN</span><span class="tag">Socket.IO</span></div>
+      <p data-zh="全栈实时聊天应用 —— MongoDB、Express、React 与 Node.js，由 Socket.IO 处理双向消息通信。">
+        Full-stack real-time chat application &mdash; MongoDB, Express, React, and Node.js, with
+        Socket.IO handling bi-directional messaging.
+      </p>
+      <div class="card__links">
+        <a href="https://github.com/jteh37449/Chat-Space" target="_blank" rel="noopener" data-zh="仓库">Repository</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card__title">
+        <a href="https://github.com/jteh37449/jteh37449.github.io" target="_blank" rel="noopener">jteh37449.github.io</a>
+      </h3>
+      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+      <p data-zh="本站。纯静态 HTML 与 CSS，无构建步骤，由 GitHub Pages 托管。">
+        This site. Static HTML and CSS with no build step, served by GitHub Pages.
+      </p>
+      <div class="card__links">
+        <a href="https://github.com/jteh37449/jteh37449.github.io" target="_blank" rel="noopener" data-zh="仓库">Repository</a>
+      </div>
+    </div>
+
+    <h1 data-zh="平台主页">Profiles</h1>
+
+    <div class="card">
+      <h3 class="card__title">
+        <a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener">Codeforces &mdash; Jteh</a>
+      </h3>
+      <div class="tags"><span class="tag">C++</span><span class="tag">Candidate Master</span></div>
+      <p data-zh="竞技编程。当前等级 Candidate Master，用户排名前 3%。">
+        Competitive programming. Currently rated Candidate Master, in the top 3% of users.
+      </p>
+      <div class="card__links">
+        <a href="https://codeforces.com/profile/Jteh" target="_blank" rel="noopener" data-zh="主页">Profile</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card__title">
+        <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener">Kaggle &mdash; tanjasper</a>
+      </h3>
+      <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span></div>
+      <p data-zh-html="机器学习竞赛与 Notebook。在 FIDE &amp; Google 高效国际象棋 AI 挑战赛中进入前 2%。">
+        Machine learning competitions and notebooks. Finished in the top 2% of the FIDE &amp;
+        Google Efficient Chess AI Challenge.
+      </p>
+      <div class="card__links">
+        <a href="https://www.kaggle.com/tanjasper" target="_blank" rel="noopener" data-zh="主页">Profile</a>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    &copy; <span id="year"></span> <span data-zh="陈佃铭">Jasper Tan</span>.
+  </div>
+</footer>
+
+<script src="/script.js"></script>
+</body>
+</html>
