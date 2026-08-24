@@ -87,9 +87,20 @@ All animation rules also sit inside `@media (prefers-reduced-motion: no-preferen
 so anyone who asked their OS for less motion gets none. The failsafe deliberately sits
 *outside* that query, so it applies in every case.
 
-If you add animations, keep both properties: gate on `:root.anim` and add the selector
-to the `.anim-settled` failsafe block. Never write a bare `opacity: 0` that only an
-animation undoes.
+**The lightbox is a special case.** It opens on click, long after `.anim-settled` has
+fired, so the failsafe cannot cover it. Its animation is therefore **transform-only**
+(`pop-scale`) with no opacity in the keyframe: a frozen clock leaves the panel resting at
+`scale(.94)` — fine — whereas a fade would leave an invisible certificate behind a dark
+overlay.
+
+If you add animations, follow whichever rule applies:
+
+- **Fires on page load** → gate on `:root.anim` and add the selector to the
+  `.anim-settled` failsafe block.
+- **Fires later, on interaction** → animate transform only. The failsafe is long gone
+  by then, so the animation has to be harmless on its own.
+
+Never write a bare `opacity: 0` that only an animation undoes.
 
 ## Editing
 

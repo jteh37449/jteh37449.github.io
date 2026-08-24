@@ -130,6 +130,13 @@ code {
   to   { opacity: 1; transform: none; }
 }
 
+/* Transform only — safe where the animation clock never advances,
+   because it can never leave anything invisible. */
+@keyframes pop-scale {
+  from { transform: scale(.94); }
+  to   { transform: none; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :root.anim .masthead__inner > *,
   :root.anim .sidebar > *,
@@ -163,11 +170,16 @@ code {
   :root.anim .page > *:nth-child(9)  { animation-delay: 670ms; }
   :root.anim .page > *:nth-child(n+10) { animation-delay: 720ms; }
 
-  /* Certificate lightbox. Safe to animate unconditionally: it is
-     hidden until opened, so a frozen clock cannot blank the page. */
-  .lightbox.is-open { animation: enter-fade .18s ease-out both; }
+  /* Certificate lightbox.
+
+     Deliberately transform-only, with no opacity in the keyframe. The
+     `.anim-settled` failsafe cannot help here — it fires 1.6s after page
+     load, long before anyone clicks a certificate — so the animation has
+     to be safe on its own. A frozen clock leaves the panel resting at
+     scale(.94): visibly fine, just fractionally small. An opacity fade
+     would instead leave an invisible certificate behind a dark overlay. */
   .lightbox.is-open .lightbox__inner {
-    animation: enter-pop .28s cubic-bezier(.22, .61, .36, 1) both;
+    animation: pop-scale .28s cubic-bezier(.22, .61, .36, 1) both;
   }
 }
 
