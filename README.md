@@ -66,6 +66,31 @@ trade for not maintaining a second set of pages.
 Proper nouns stay in English on purpose: brand names (GitHub, Codeforces, Kaggle), official
 round names ("Codeforces Round 1089 (Div. 2)"), repo names, and language/framework names.
 
+## Entrance animations
+
+Content fades and lifts in on load, staggered: masthead → sidebar → main column,
+finishing in about 1.3s. Hovering the theme button rotates its icon; the certificate
+lightbox scales in.
+
+These fade **from opacity 0**, so a failure to animate would show a blank page. Two
+guards, in `styles.css` and the inline `<head>` script:
+
+1. Every animation rule is gated behind `:root.anim`, which only the head script adds.
+   **No JavaScript → no animation, content simply renders.**
+2. The same script sets a 1.6s `setTimeout` adding `.anim-settled`, which force-clears
+   the animation (`animation: none; opacity: 1`). `setTimeout` runs off the wall clock,
+   so it fires even where the *animation timeline* is frozen — some headless renderers
+   and crawlers never advance `document.timeline.currentTime`, and without this guard
+   they would render the page empty.
+
+All animation rules also sit inside `@media (prefers-reduced-motion: no-preference)`,
+so anyone who asked their OS for less motion gets none. The failsafe deliberately sits
+*outside* that query, so it applies in every case.
+
+If you add animations, keep both properties: gate on `:root.anim` and add the selector
+to the `.anim-settled` failsafe block. Never write a bare `opacity: 0` that only an
+animation undoes.
+
 ## Editing
 
 **The masthead and sidebar are duplicated in all five HTML files** (no build step, no

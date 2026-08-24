@@ -12,9 +12,15 @@
     try { t = localStorage.getItem('theme'); l = localStorage.getItem('locale'); } catch (e) {}
     if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     if (!l) l = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
-    document.documentElement.setAttribute('data-theme', t);
-    document.documentElement.setAttribute('data-locale', l);
-    document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+    var d = document.documentElement;
+    d.setAttribute('data-theme', t);
+    d.setAttribute('data-locale', l);
+    d.lang = l === 'zh' ? 'zh-CN' : 'en';
+    // Entrance animations are opt-in via this class, so no JS means no
+    // hidden content. The timeout is a failsafe on the wall clock: it
+    // fires even where the animation timeline never advances.
+    d.classList.add('anim');
+    setTimeout(function () { d.classList.add('anim-settled'); }, 1600);
   })();
 </script>
 <link rel="stylesheet" href="styles.css">

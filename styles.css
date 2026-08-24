@@ -85,6 +85,92 @@ code {
   padding: 1px 5px;
 }
 
+/* ---------------------------------------------------------------
+   Entrance animations
+
+   These fade content in from opacity 0, which means a failure to
+   animate would leave the page blank. Two guards, because a portfolio
+   that renders empty is worse than one with no animation:
+
+   1. Everything is gated behind `:root.anim`, added by the inline
+      head script. No JavaScript -> no animation, content just shows.
+   2. That same script sets a 1.6s `setTimeout` adding `.anim-settled`,
+      which force-clears the animation. setTimeout runs off the wall
+      clock, so it fires even where the *animation* timeline is frozen
+      (some headless renderers and crawlers do exactly this — verified
+      against one where document.timeline.currentTime never advanced).
+
+   The stagger is nth-child rather than JS-assigned delays, so it can
+   never start before a late script gets around to setting them.
+   --------------------------------------------------------------- */
+
+/* Failsafe: whatever happened, show the content. */
+:root.anim-settled .masthead,
+:root.anim-settled .masthead__inner > *,
+:root.anim-settled .sidebar > *,
+:root.anim-settled .page > *,
+:root.anim-settled .site-footer,
+:root.anim-settled .author__avatar img {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+@keyframes enter-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes enter-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes enter-pop {
+  from { opacity: 0; transform: scale(.94); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root.anim .masthead__inner > *,
+  :root.anim .sidebar > *,
+  :root.anim .page > * {
+    animation: enter-up .55s cubic-bezier(.22, .61, .36, 1) both;
+  }
+
+  :root.anim .masthead { animation: enter-fade .4s ease-out both; }
+  :root.anim .author__avatar img { animation: enter-pop .7s cubic-bezier(.22, .61, .36, 1) both; }
+  :root.anim .site-footer { animation: enter-fade .6s ease-out .5s both; }
+
+  /* Masthead first, then sidebar, then the page column. */
+  :root.anim .masthead__inner > *:nth-child(1) { animation-delay: 40ms; }
+  :root.anim .masthead__inner > *:nth-child(2) { animation-delay: 110ms; }
+
+  :root.anim .sidebar > *:nth-child(1) { animation-delay: 140ms; }
+  :root.anim .sidebar > *:nth-child(2) { animation-delay: 195ms; }
+  :root.anim .sidebar > *:nth-child(3) { animation-delay: 250ms; }
+  :root.anim .sidebar > *:nth-child(4) { animation-delay: 305ms; }
+  :root.anim .sidebar > *:nth-child(5) { animation-delay: 360ms; }
+  :root.anim .sidebar > *:nth-child(6) { animation-delay: 415ms; }
+
+  :root.anim .page > *:nth-child(1)  { animation-delay: 230ms; }
+  :root.anim .page > *:nth-child(2)  { animation-delay: 285ms; }
+  :root.anim .page > *:nth-child(3)  { animation-delay: 340ms; }
+  :root.anim .page > *:nth-child(4)  { animation-delay: 395ms; }
+  :root.anim .page > *:nth-child(5)  { animation-delay: 450ms; }
+  :root.anim .page > *:nth-child(6)  { animation-delay: 505ms; }
+  :root.anim .page > *:nth-child(7)  { animation-delay: 560ms; }
+  :root.anim .page > *:nth-child(8)  { animation-delay: 615ms; }
+  :root.anim .page > *:nth-child(9)  { animation-delay: 670ms; }
+  :root.anim .page > *:nth-child(n+10) { animation-delay: 720ms; }
+
+  /* Certificate lightbox. Safe to animate unconditionally: it is
+     hidden until opened, so a frozen clock cannot blank the page. */
+  .lightbox.is-open { animation: enter-fade .18s ease-out both; }
+  .lightbox.is-open .lightbox__inner {
+    animation: enter-pop .28s cubic-bezier(.22, .61, .36, 1) both;
+  }
+}
+
 /* ---------------- Masthead ---------------- */
 .masthead {
   border-bottom: 1px solid var(--border);
@@ -151,6 +237,17 @@ code {
   cursor: pointer;
 }
 .theme-toggle:hover { color: var(--text-strong); border-color: var(--muted); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .theme-toggle,
+  .locale-toggle { transition: color .18s ease, border-color .18s ease; }
+  .theme-toggle svg { transition: transform .35s cubic-bezier(.22, .61, .36, 1); }
+  .theme-toggle:hover svg { transform: rotate(18deg); }
+  .nav-links a,
+  .author__urls a,
+  .card__title a,
+  .award-list .award-name { transition: color .18s ease; }
+}
 .theme-toggle svg { width: 17px; height: 17px; display: block; }
 
 /* Which icon shows. Default (light): offer the moon. */
