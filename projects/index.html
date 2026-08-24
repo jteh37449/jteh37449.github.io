@@ -93,10 +93,13 @@
           <strong>Token optimisation</strong> &mdash; profiling how many tokens each conversation
           consumed and cutting the cost per interaction.
         </li>
-        <li data-zh-html="<strong>模型迁移</strong> —— 评估可选的大语言模型，并在每个模型上重新验证核心对话流程，包括针对「智能体声称完成了实际未执行的工作」这类情况的对抗性测试。">
+        <li data-zh-html="<strong>模型迁移</strong> —— 评估可选的大语言模型，并在每个模型上重新验证核心对话流程，包括针对「智能体声称完成了实际未执行的工作」这类情况的对抗性测试。最终<strong>将模型成本降至基线的 8%（约 11.8 倍降本）</strong>，同时集成测试正确率保持 26/27（基线 27/27）；并否决了成本更低、但会在未获确认时写入工单的模型。">
           <strong>Model migration</strong> &mdash; evaluating candidate language models for the
           agent and re-verifying the core conversational flows on each one, including adversarial
           testing for cases where an agent reports success on work it never actually performed.
+          This <strong>cut model cost to 8% of the baseline (11.8&times; cheaper)</strong> while
+          holding correctness at 26/27 against a 27/27 baseline &mdash; and ruled out a cheaper
+          model that would write to tickets without a valid confirmation.
         </li>
       </ul>
     </div>
