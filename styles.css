@@ -339,6 +339,16 @@ hr {
   color: var(--muted);
   font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Chinese dates ("2025 年 12 月") run ~88px — wider than the English gutter.
+   Desktop only: below 900px the date stacks above the text, and these
+   selectors would otherwise out-specify the mobile rules and reinstate
+   a 118px indent on a narrow screen. */
+@media (min-width: 901px) {
+  :root[data-locale="zh"] .news-list li { padding-left: 118px; }
+  :root[data-locale="zh"] .news-list .date { width: 106px; }
 }
 
 /* Education / award entries */
