@@ -148,6 +148,23 @@ Certificates are JPEGs capped at 1400px wide. PDFs were rendered with PyMuPDF; n
 some source PDFs are very large (one page was 7438pt wide) and need a reduced zoom factor
 or MuPDF refuses with "Overly large image".
 
+## Rebuilding the CVs
+
+`tools/rewrite_cv.py` regenerates both CVs (STAR bullets, one page, 11pt) from the
+pristine originals in `#Work/CV_backup_*/`.
+
+**Its paragraph indices are absolute against the 30-paragraph original**, so it must
+never run against its own output — a second pass lands edits on shifted paragraphs and
+silently duplicates entries while dropping section headers. An assert enforces this.
+
+    1. copy the four files from #Work/CV_backup_*/ over #Work/
+    2. python tools/rewrite_cv.py
+    3. open each .docx in Word and Save As PDF (or use the COM snippet in git log)
+    4. regenerate the redacted public copies in files/ (phone number removed)
+
+The `.docx` files are not in this repo — only the redacted PDFs are. Keep the backup
+folder: it is the only source the script can run from.
+
 ## Publishing
 
 The remote is already configured. To update the live site:
