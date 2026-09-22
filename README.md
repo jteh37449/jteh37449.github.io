@@ -150,20 +150,25 @@ or MuPDF refuses with "Overly large image".
 
 ## Rebuilding the CVs
 
-`tools/rewrite_cv.py` regenerates both CVs (STAR bullets, one page, 11pt) from the
-pristine originals in `#Work/CV_backup_*/`.
+Since September 2026 both CVs are generated from scratch by python-docx scripts kept
+**outside this repo** in `#Work/cv_build/` (they contain the phone number):
+`build.py` (Chinese) and `build_en.py` (English), sharing `cvlib_head.py`. Each takes
+the output path, plus `--public` to leave the phone number out:
 
-**Its paragraph indices are absolute against the 30-paragraph original**, so it must
-never run against its own output — a second pass lands edits on shifted paragraphs and
-silently duplicates entries while dropping section headers. An assert enforces this.
+    python build.py    "Jasper Tan_中文简历.docx"
+    python build.py    zh_public.docx --public
+    python build_en.py "Jasper Tan_EN.docx"
+    python build_en.py en_public.docx --public
 
-    1. copy the four files from #Work/CV_backup_*/ over #Work/
-    2. python tools/rewrite_cv.py
-    3. open each .docx in Word and Save As PDF (or use the COM snippet in git log)
-    4. regenerate the redacted public copies in files/ (phone number removed)
+Then open each .docx in Word and Save As PDF (or use the COM snippet in git log), and
+copy the two `--public` PDFs over `files/Jasper_Tan_CV_zh.pdf` and
+`files/Jasper_Tan_CV.pdf`. Both CVs must stay on one A4 page — check the PDF page count.
 
-The `.docx` files are not in this repo — only the redacted PDFs are. Keep the backup
-folder: it is the only source the script can run from.
+`tools/rewrite_cv.py` is the **superseded** STAR-format rewrite of the old layout. Do not
+run it: it rebuilds from `#Work/CV_backup_*/` and would replace the current CVs with the
+old design.
+
+The `.docx` files are not in this repo — only the redacted PDFs are.
 
 ## Publishing
 
